@@ -108,3 +108,4 @@ public class ChatBotClient {
         return "OpenAI API error (" + status + "). Check Logcat for details.";
     }
 }
+6

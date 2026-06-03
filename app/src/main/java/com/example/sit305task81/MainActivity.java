@@ -119,6 +119,31 @@ public class MainActivity extends Activity {
         root.setPadding(dp(14), dp(18), dp(14), dp(14));
         root.setBackground(makeBackground());
 
+        LinearLayout topRow = new LinearLayout(this);
+        topRow.setOrientation(LinearLayout.HORIZONTAL);
+        topRow.setGravity(Gravity.RIGHT);
+
+        Button logoutButton = new Button(this);
+        logoutButton.setText("Logout");
+        logoutButton.setTextColor(Color.BLACK);
+        logoutButton.setTextSize(13);
+        logoutButton.setTypeface(Typeface.DEFAULT_BOLD);
+        logoutButton.setAllCaps(false);
+        logoutButton.setBackground(rounded(Color.rgb(0, 255, 92), dp(4)));
+        logoutButton.setOnClickListener(view -> {
+            username = "";
+            showLoginScreen();
+        });
+
+        LinearLayout.LayoutParams logoutParams = new LinearLayout.LayoutParams(dp(96), dp(42));
+        topRow.addView(logoutButton, logoutParams);
+        LinearLayout.LayoutParams topRowParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        topRowParams.setMargins(0, dp(18), 0, 0);
+        root.addView(topRow, topRowParams);
+
         chatAdapter = new ChatAdapter();
         chatRecyclerView = new RecyclerView(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -126,7 +151,7 @@ public class MainActivity extends Activity {
         chatRecyclerView.setLayoutManager(layoutManager);
         chatRecyclerView.setAdapter(chatAdapter);
         chatRecyclerView.setClipToPadding(false);
-        chatRecyclerView.setPadding(0, dp(120), 0, dp(10));
+        chatRecyclerView.setPadding(0, dp(78), 0, dp(10));
         chatRecyclerView.setBackgroundColor(Color.TRANSPARENT);
         root.addView(chatRecyclerView, new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
